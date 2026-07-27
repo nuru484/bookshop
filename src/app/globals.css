@@ -1,0 +1,351 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── Harmattan Books palette ─────────────────────────────────────────── */
+@theme {
+  /* Brand */
+  --color-ink: #1c2a21; /* darkest green-black: bars, footer, sidebar */
+  --color-pine: #2e6b4f; /* primary green */
+  --color-pine-deep: #24543e; /* primary hover */
+  --color-moss: #45543f; /* body text on light */
+  --color-sage: #6a7a66; /* muted text */
+  --color-mist: #dce3d8; /* borders */
+  --color-pale: #e7ede4; /* soft fills, row borders */
+  --color-cream: #f3f6f0; /* light text on dark */
+  --color-cream-bright: #f1f6ef; /* button text on pine */
+  --color-canvas: #f0f4ee; /* page background */
+  --color-gold: #c2a65a; /* accent gold */
+  --color-gold-deep: #8a6414; /* gold text on parchment */
+  --color-parchment: #f3e7ce; /* pending pill bg */
+  --color-rust: #93381a; /* destructive */
+  --color-rust-pale: #f0deda; /* destructive pill bg */
+  --color-rust-soft: #e58b72; /* destructive on dark */
+  --color-lake: #34506b; /* shipped pill text */
+  --color-lake-pale: #dfe7ee; /* shipped pill bg */
+  --color-fern: #3e5a41; /* success pill text */
+  --color-fern-pale: #e4ebdf; /* success pill bg */
+
+  --animate-fade-up: fadeUp 0.4s ease both;
+  --animate-drawer-in: drawerIn 0.25s ease both;
+  --animate-toast-in: toastIn 0.25s ease both;
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes drawerIn {
+    from {
+      transform: translateX(40px);
+      opacity: 0;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+  @keyframes toastIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* shadcn-style semantic tokens, remapped to the Harmattan palette */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-karla);
+  --font-serif: var(--font-instrument-serif);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+}
+
+:root {
+  /* Square corners everywhere - the design uses border-radius:0 throughout */
+  --radius: 0rem;
+
+  --background: #f0f4ee;
+  --foreground: #1c2a21;
+
+  --card: #fbfcfa;
+  --card-foreground: #1c2a21;
+
+  --popover: #fbfcfa;
+  --popover-foreground: #1c2a21;
+
+  --primary: #2e6b4f;
+  --primary-foreground: #f1f6ef;
+
+  --secondary: #e7ede4;
+  --secondary-foreground: #45543f;
+
+  --muted: #e7ede4;
+  --muted-foreground: #6a7a66;
+
+  --accent: #e4ebdf;
+  --accent-foreground: #1c2a21;
+
+  --destructive: #93381a;
+  --destructive-foreground: #f1f6ef;
+
+  --border: #dce3d8;
+  --input: rgba(28, 42, 33, 0.22);
+  --ring: #2e6b4f;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    margin: 0;
+    color: var(--foreground);
+    font-family: var(--font-karla), sans-serif;
+    background:
+      radial-gradient(1100px 620px at 88% -8%, rgba(46, 107, 79, 0.18), transparent 62%),
+      radial-gradient(880px 520px at -8% 28%, rgba(194, 166, 90, 0.14), transparent 55%),
+      radial-gradient(760px 720px at 58% 112%, rgba(46, 107, 79, 0.12), transparent 60%),
+      #f0f4ee;
+    background-attachment: fixed;
+  }
+  ::selection {
+    background: #2e6b4f;
+    color: #f3f6f0;
+  }
+}
+
+@layer components {
+  /* Frosted-glass card - the design's signature surface */
+  .glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.26));
+    backdrop-filter: blur(28px) saturate(170%);
+    -webkit-backdrop-filter: blur(28px) saturate(170%);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.75),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.2),
+      0 18px 44px rgba(18, 30, 23, 0.12);
+  }
+
+  /* Glass only from sm up - auth cards go full-bleed on phones */
+  .glass-from-sm {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  @media (min-width: 640px) {
+    .glass-from-sm {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.26));
+      backdrop-filter: blur(28px) saturate(170%);
+      -webkit-backdrop-filter: blur(28px) saturate(170%);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.75),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.2),
+        0 18px 44px rgba(18, 30, 23, 0.12);
+    }
+  }
+
+  /* Dashed variant used for empty states */
+  .glass-dashed {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px dashed rgba(28, 42, 33, 0.3);
+  }
+
+  /* Frosted input */
+  .input-glass {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(28, 42, 33, 0.22);
+    box-shadow: inset 0 1px 2px rgba(18, 30, 23, 0.05);
+    border-radius: 0;
+    outline: none;
+    color: #1c2a21;
+  }
+  .input-glass:focus {
+    border-color: #2e6b4f;
+  }
+  .input-glass::placeholder {
+    color: #6a7a66;
+    opacity: 0.75;
+  }
+
+  /* Dark-panel input (promo / staff-invite panels) */
+  .input-dark {
+    background: rgba(243, 246, 240, 0.08);
+    border: 1.5px solid rgba(231, 237, 228, 0.3);
+    color: #e7ede4;
+    border-radius: 0;
+    outline: none;
+  }
+  .input-dark:focus {
+    border-color: #c2a65a;
+  }
+  .input-dark::placeholder {
+    color: rgba(231, 237, 228, 0.45);
+  }
+
+  /* Button recipes */
+  .btn-primary {
+    background: #2e6b4f;
+    color: #f1f6ef;
+    border: none;
+    border-radius: 0;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+    box-shadow: 0 6px 16px rgba(46, 107, 79, 0.25);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: #24543e;
+  }
+  .btn-primary:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .btn-dark {
+    background: #1c2a21;
+    color: #f3f6f0;
+    border: none;
+    border-radius: 0;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-dark:hover:not(:disabled) {
+    background: #2e6b4f;
+  }
+
+  .btn-outline-ink {
+    background: none;
+    color: #1c2a21;
+    border: 1.5px solid #1c2a21;
+    border-radius: 0;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+      background 0.15s,
+      color 0.15s;
+  }
+  .btn-outline-ink:hover:not(:disabled) {
+    background: #1c2a21;
+    color: #f3f6f0;
+  }
+
+  .btn-outline-pine {
+    background: none;
+    color: #2e6b4f;
+    border: 1.5px solid #2e6b4f;
+    border-radius: 0;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+      background 0.15s,
+      color 0.15s;
+  }
+  .btn-outline-pine:hover:not(:disabled) {
+    background: #2e6b4f;
+    color: #f1f6ef;
+  }
+
+  .btn-outline-rust {
+    background: none;
+    color: #93381a;
+    border: 1.5px solid #93381a;
+    border-radius: 0;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+      background 0.15s,
+      color 0.15s;
+  }
+  .btn-outline-rust:hover:not(:disabled) {
+    background: #93381a;
+    color: #f1f6ef;
+  }
+
+  .btn-quiet {
+    background: none;
+    color: #6a7a66;
+    border: 1.5px solid #dce3d8;
+    border-radius: 0;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+      border-color 0.15s,
+      color 0.15s;
+  }
+  .btn-quiet:hover:not(:disabled) {
+    border-color: #2e6b4f;
+    color: #2e6b4f;
+  }
+
+  /* Tiny tracked uppercase kicker */
+  .eyebrow {
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #6a7a66;
+  }
+
+  /* Skeleton shimmer */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(28, 42, 33, 0.07) 25%,
+      rgba(28, 42, 33, 0.13) 50%,
+      rgba(28, 42, 33, 0.07) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.6s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .skeleton {
+      animation: none;
+    }
+  }
+}
