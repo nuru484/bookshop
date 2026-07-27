@@ -1,0 +1,209 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  ADMIN
+  EDITOR
+  CUSTOMER
+}
+
+model User {
+  id               String   @id @default(uuid())
+  email            String   @unique
+  fullname         String
+  phone            String?
+  address          String?  @db.VarChar(255)
+  city             String?  @db.VarChar(100)
+  profilePicture   String?  @db.VarChar(500)
+  /// Cloudinary public_id, kept so replacing/removing can destroy the old asset.
+  profilePictureId String?  @db.VarChar(255)
+  password         String
+  role             UserRole @default(EDITOR)
+  twoFactorEnabled Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  securityTokens UserSecurityToken[]
+  orders         Order[]
+  wishlist       WishlistItem[]
+
+  @@index([email])
+  @@index([id])
+}
+
+enum Genre {
+  Romance
+  Gothic
+  Literary
+  Adventure
+  Epic
+}
+
+enum BookStatus {
+  Published
+  Draft
+  Archived
+}
+
+model Book {
+  id        Int        @id @default(autoincrement())
+  slug      String     @unique @db.VarChar(255)
+  title     String     @db.VarChar(255)
+  author    String     @db.VarChar(150)
+  year      Int
+  genre     Genre
+  status    BookStatus @default(Published)
+  price     Float
+  stock     Int        @default(0)
+  rating    Float      @default(0)
+  pages     Int        @default(0)
+  isbn      String     @db.VarChar(20)
+  isNew     Boolean    @default(false)
+  staffPick Boolean    @default(false)
+  sold      Int        @default(0)
+  blurb     String     @db.VarChar(500)
+
+  orderItems    OrderItem[]
+  wishlistItems WishlistItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slug])
+  @@index([genre])
+  @@index([status])
+  @@index([author])
+  @@index([title])
+}
+
+model Promo {
+  id          Int     @id @default(autoincrement())
+  code        String  @unique @db.VarChar(30)
+  percentOff  Int
+  description String  @db.VarChar(255)
+  /// When set, the discount only applies to lines from this shelf.
+  genre       Genre?
+  active      Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([active])
+}
+
+/// Aggregated public search terms - powers "mostly searched by others".
+model SearchQuery {
+  id             Int      @id @default(autoincrement())
+  term           String   @unique @db.VarChar(120)
+  count          Int      @default(1)
+  lastSearchedAt DateTime @default(now())
+
+  @@index([count])
+}
+
+/// Wishlist for signed-in customers; guests keep theirs in localStorage.
+model WishlistItem {
+  id     Int    @id @default(autoincrement())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookId Int
+  book   Book   @relation(fields: [bookId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, bookId])
+  @@index([userId])
+}
+
+enum OrderStatus {
+  Pending
+  Paid
+  Shipped
+  Delivered
+  Cancelled
+}
+
+model Order {
+  id      String      @id @db.VarChar(20) // "HB-2431" style
+  name    String      @db.VarChar(150)
+  email   String      @db.VarChar(255)
+  phone   String      @db.VarChar(30)
+  city    String      @db.VarChar(100)
+  address String      @db.VarChar(255)
+  status  OrderStatus @default(Pending)
+  total   Float
+
+  /// Paystack transaction reference; unique so verification is idempotent.
+  paystackRef String?   @unique @db.VarChar(64)
+  paidAt      DateTime?
+
+  /// Refund trail - a paid order can only be cancelled once refunded.
+  refundedAt     DateTime?
+  refundRef      String?   @db.VarChar(80)
+  refundAmount   Float?
+  /// Status the order held before cancellation, so it can be reinstated.
+  statusBeforeCancel OrderStatus?
+
+  // Linked when the order was placed by a signed-in customer.
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+  items OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@index([userId])
+}
+
+model OrderItem {
+  id      Int    @id @default(autoincrement())
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  bookId Int
+  book   Book @relation(fields: [bookId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+
+  qty       Int
+  /// Price snapshot at purchase time - book prices can change later.
+  unitPrice Float
+
+  @@index([orderId])
+  @@index([bookId])
+}
+
+enum UserSecurityTokenType {
+  TWO_FACTOR_LOGIN // 6-digit email OTP challenged at login
+  TWO_FACTOR_SETUP // 6-digit email OTP confirming 2FA enablement
+  PASSWORD_RESET // long random token embedded in the email reset link
+}
+
+model UserSecurityToken {
+  id     String @id @default(uuid())
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  /// sha256 of the plain code - the plain value is never stored.
+  tokenHash String                @unique
+  type      UserSecurityTokenType
+
+  attempts    Int @default(0)
+  maxAttempts Int @default(5)
+
+  expiresAt  DateTime
+  consumedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId, type])
+  @@index([expiresAt])
+}
