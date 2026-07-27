@@ -1,0 +1,77 @@
+// src/components/store/store-footer.tsx
+import Link from 'next/link';
+
+const FOOT_LINK =
+  'bg-transparent border-none text-pale cursor-pointer text-left p-0 text-sm font-medium no-underline hover:text-pine hover:no-underline';
+
+export function StoreFooter() {
+  return (
+    <footer className="mt-auto bg-ink text-pale">
+      <div className="mx-auto flex max-w-[1180px] flex-wrap gap-10 px-5 pt-12 pb-[30px]">
+        <div className="flex-[2_1_260px]">
+          <div className="mb-2.5 font-serif text-2xl">Harmattan Books</div>
+          <p className="m-0 max-w-[38ch] text-[13.5px] leading-[1.7] text-pale/65">
+            An independent bookshop in Tamale, Northern Region. Classics kept in print, opinions
+            kept sharp, tea kept warm.
+          </p>
+        </div>
+        <div className="flex-[1_1_140px]">
+          <div className="mb-3 text-[11px] font-bold tracking-[0.22em] text-pale/50 uppercase">Shop</div>
+          <div className="flex flex-col gap-2 text-sm font-medium">
+            <Link href="/shop" className={FOOT_LINK}>
+              All books
+            </Link>
+            <Link href="/wishlist" className={FOOT_LINK}>
+              Wishlist
+            </Link>
+            <Link href="/track-order" className={FOOT_LINK}>
+              Track order
+            </Link>
+            <Link href="/account" className={FOOT_LINK}>
+              My account
+            </Link>
+          </div>
+        </div>
+        <div className="flex-[1_1_230px]">
+          <div className="mb-3 text-[11px] font-bold tracking-[0.22em] text-pale/50 uppercase">Visit us</div>
+          <div className="text-[13.5px] leading-[1.8] whitespace-nowrap text-pale/75">
+            Aboabo Market Road
+            <br />
+            Tamale, Northern Region
+            <br />
+            Ghana
+            <br />
+            Tue-Sun · 9am-7pm
+            <br />
+            hello@harmattanbooks.com
+          </div>
+        </div>
+      </div>
+      <div className="border-t border-pale/12">
+        <div className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-between gap-x-5 gap-y-2 px-5 py-4 text-xs text-pale/45">
+          <span className="whitespace-nowrap">© 2026 Harmattan Books</span>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Link
+              href="/privacy"
+              className="whitespace-nowrap text-pale/60 no-underline hover:text-pine hover:no-underline"
+            >
+              Privacy policy
+            </Link>
+            <Link
+              href="/terms"
+              className="whitespace-nowrap text-pale/60 no-underline hover:text-pine hover:no-underline"
+            >
+              Terms of service
+            </Link>
+            <Link
+              href="/admin"
+              className="whitespace-nowrap text-pale/60 no-underline hover:text-pine hover:no-underline"
+            >
+              Staff console →
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
