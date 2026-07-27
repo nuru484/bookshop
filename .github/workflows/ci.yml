@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Placeholder values: the build only needs these to exist, never to work.
+  # Real secrets live in the deploy workflow / hosting provider.
+  DATABASE_URL: postgresql://postgres:postgres@localhost:5432/bookshop_ci
+  SESSION_SECRET: ci-session-secret-not-used-anywhere-real
+  ADMIN_EMAIL: ci@example.com
+  ADMIN_PASSWORD: CiPassword1!
+  ADMIN_FULLNAME: CI Runner
+  UPSTASH_REDIS_REST_URL: https://ci.placeholder.upstash.io
+  UPSTASH_REDIS_REST_TOKEN: ci-placeholder-token
+  NEXT_PUBLIC_BASE_URL: http://localhost:3000
+
+jobs:
+  quality:
+    name: Lint, types and build
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: bookshop_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Validate Prisma schema
+        run: npx prisma validate
+
+      - name: Apply migrations
+        # Proves every migration still applies cleanly to an empty database,
+        # which is exactly what the release step does in production.
+        run: npx prisma migrate deploy
+
+      - name: Check for em dashes
+        # Project writing rule: the em dash is never used in this codebase.
+        run: |
+          if grep -rn '—' src prisma 2>/dev/null; then
+            echo "::error::Em dash found. Use ' - ' instead."
+            exit 1
+          fi
+
+      - name: Lint
+        run: npx eslint src --max-warnings=0
+
+      - name: Typecheck
+        run: npx tsc --noEmit --incremental false
+
+      - name: Build
+        run: npx next build

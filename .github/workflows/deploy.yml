@@ -1,0 +1,67 @@
+name: Deploy
+
+on:
+  # Runs after CI passes on main, so a broken build never reaches production.
+  workflow_run:
+    workflows: [CI]
+    branches: [main]
+    types: [completed]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Migrate and deploy to Vercel
+    runs-on: ubuntu-latest
+    # workflow_dispatch has no upstream conclusion to check.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run database migrations
+        # Migrations run before the new build goes live so the schema is
+        # always ready for the code that is about to serve traffic.
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: npx prisma migrate deploy
+
+      - name: Deploy to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          npx vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+          npx vercel build --prod --token="$VERCEL_TOKEN"
+          npx vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+
+      - name: Purge the storefront cache
+        # The catalogue cache is tag-based and long-lived; a fresh deploy
+        # starts clean so no pre-deploy entry can outlive the release.
+        env:
+          BASE_URL: ${{ secrets.PRODUCTION_BASE_URL }}
+          REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
+        run: |
+          if [ -n "$BASE_URL" ] && [ -n "$REVALIDATE_SECRET" ]; then
+            curl -fsS -X POST "$BASE_URL/api/revalidate" \
+              -H "Content-Type: application/json" \
+              -H "x-revalidate-secret: $REVALIDATE_SECRET" \
+              -d '{"tag":"books"}' || echo "Cache purge failed (non-fatal)."
+          else
+            echo "Cache purge skipped (secrets not configured)."
+          fi
