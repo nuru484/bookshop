@@ -120,10 +120,6 @@ export const catalogApi = apiSlice.injectEndpoints({
         'Customers',
       ],
     }),
-    placeOrder: builder.mutation<{ message: string; data: IOrderWithTotal }, ICheckoutInput>({
-      query: (body) => ({ url: '/orders', method: 'POST', body }),
-      invalidatesTags: [{ type: 'Orders', id: 'LIST' }, 'DashboardStats', 'Customers', 'MyOrders'],
-    }),
     createAdminOrder: builder.mutation<
       { message: string; data: IOrderWithTotal },
       {
@@ -268,7 +264,6 @@ export const {
   useGetOrderQuery,
   useUpdateOrderStatusMutation,
   useCreateAdminOrderMutation,
-  usePlaceOrderMutation,
   useGetMyOrdersQuery,
   useTrackOrderMutation,
   useGetCustomersQuery,

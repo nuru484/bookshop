@@ -48,13 +48,17 @@ export const createUserSchema = z.object({
 const address = z.string().trim().max(255).optional().nullable();
 const city = z.string().trim().max(100).optional().nullable();
 
+/**
+ * Profile updates never carry a role: role changes go through
+ * PATCH /api/users/[userId]/role, which enforces not-self and
+ * not-a-customer. Keeping it out here means there is exactly one path.
+ */
 export const updateUserSchema = z.object({
   fullname: fullname.optional(),
   email: email.optional(),
   phone,
   address,
   city,
-  role: z.enum(['ADMIN', 'EDITOR']).optional(),
 });
 
 /** Admin-side "create a customer account" form. */

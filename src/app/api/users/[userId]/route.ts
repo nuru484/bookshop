@@ -65,8 +65,8 @@ export async function GET(
 
 /**
  * PUT /api/users/[userId]
- * Protected - users can update their own profile (fullname, email, phone).
- * Only admins may additionally change roles (never their own).
+ * Protected - profile fields only (name, email, phone, address, city).
+ * Role changes live on PATCH /api/users/[userId]/role.
  */
 export async function PUT(
   req: NextRequest,
@@ -123,9 +123,7 @@ export async function PUT(
     if (userDetails.phone !== undefined) updateData.phone = userDetails.phone;
     if (userDetails.address !== undefined) updateData.address = userDetails.address;
     if (userDetails.city !== undefined) updateData.city = userDetails.city;
-    // Only admins may change a user's role (prevents self-escalation).
-    if (userDetails.role !== undefined && session.isAdmin && session.userId !== userId)
-      updateData.role = userDetails.role;
+    // Roles are deliberately not settable here - see updateUserSchema.
 
     const updatedUser = await prisma.user.update({
       where: { id: userId },
