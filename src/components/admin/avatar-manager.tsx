@@ -79,6 +79,8 @@ interface AvatarManagerProps {
   onUpload: (dataUrl: string) => Promise<void> | void;
   onRemove: () => void;
   size?: number;
+  /** The identity block (name, role) that sits beside the picture. */
+  children?: React.ReactNode;
 }
 
 /**
@@ -93,6 +95,7 @@ export function AvatarManager({
   onUpload,
   onRemove,
   size = 64,
+  children,
 }: AvatarManagerProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const titleId = useId();
@@ -127,22 +130,33 @@ export function AvatarManager({
 
   return (
     <>
-      <AvatarView src={src} name={name} size={size} />
-      <input ref={inputRef} type="file" accept="image/*" onChange={onFile} className="hidden" />
-      <div className="flex shrink-0 items-center gap-2">
-        <button type="button" onClick={pick} disabled={uploading} className="btn-quiet px-3.5 py-2 text-xs">
-          {src ? 'Change photo' : 'Upload photo'}
-        </button>
-        {src && (
+      {/* Picture and name lead the row; the photo actions sit at the end on
+          wide screens and drop to their own line on phones, so they never
+          crowd the name. */}
+      <div className="flex w-full flex-wrap items-center gap-x-4 gap-y-3">
+        <AvatarView src={src} name={name} size={size} />
+        {children && <div className="min-w-0 flex-1">{children}</div>}
+        <input ref={inputRef} type="file" accept="image/*" onChange={onFile} className="hidden" />
+        <div className="flex w-full shrink-0 items-center gap-2 sm:w-auto">
           <button
             type="button"
-            onClick={onRemove}
-            disabled={removing}
-            className="cursor-pointer border-none bg-transparent p-1 text-xs font-bold text-rust hover:underline disabled:opacity-50"
+            onClick={pick}
+            disabled={uploading}
+            className="btn-quiet flex-1 px-3.5 py-2 text-xs whitespace-nowrap sm:flex-none"
           >
-            {removing ? 'Removing…' : 'Remove'}
+            {uploading ? 'Saving…' : src ? 'Change photo' : 'Upload photo'}
           </button>
-        )}
+          {src && (
+            <button
+              type="button"
+              onClick={onRemove}
+              disabled={removing}
+              className="btn-quiet flex-1 px-3.5 py-2 text-xs whitespace-nowrap text-rust hover:border-rust hover:text-rust disabled:opacity-50 sm:flex-none"
+            >
+              {removing ? 'Removing…' : 'Remove'}
+            </button>
+          )}
+        </div>
       </div>
 
       <Modal

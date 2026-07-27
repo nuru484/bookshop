@@ -77,11 +77,11 @@ purges the storefront cache tag so no pre-deploy entry outlives the release.
 
 Repository secrets required for deploys:
 
-| Secret | Used for |
-| --- | --- |
-| `DATABASE_URL` | production migrations |
-| `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` | Vercel deploy |
-| `PRODUCTION_BASE_URL`, `REVALIDATE_SECRET` | post-deploy cache purge |
+| Secret                                               | Used for                |
+| ---------------------------------------------------- | ----------------------- |
+| `DATABASE_URL`                                       | production migrations   |
+| `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` | Vercel deploy           |
+| `PRODUCTION_BASE_URL`, `REVALIDATE_SECRET`           | post-deploy cache purge |
 
 Runtime env vars (Paystack, Frog SMS, Cloudinary, Upstash, Gmail, session
 secret) are configured in the hosting provider, not in CI. See

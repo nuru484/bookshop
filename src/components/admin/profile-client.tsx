@@ -200,7 +200,7 @@ export default function ProfileClient() {
 
       {/* Profile details */}
       <div className="glass-from-sm mb-4 px-1 py-5 sm:px-7 sm:py-6">
-        <div className="mb-[18px] flex flex-wrap items-center gap-4">
+        <div className="mb-[18px]">
           <AvatarManager
             src={me.profilePicture}
             name={me.fullname}
@@ -208,13 +208,12 @@ export default function ProfileClient() {
             removing={removingAvatar}
             onUpload={saveAvatar}
             onRemove={onRemoveAvatar}
-          />
-          <div className="min-w-0 flex-1">
+          >
             <div className="truncate font-serif text-[22px]">{me.fullname}</div>
             <div className="text-[11px] font-bold tracking-[0.16em] text-gold uppercase">
               {me.role === 'ADMIN' ? 'Admin · Full access' : 'Editor'}
             </div>
-          </div>
+          </AvatarManager>
         </div>
 
         {!editingProfile ? (
