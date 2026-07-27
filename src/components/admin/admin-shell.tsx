@@ -1,6 +1,7 @@
 // src/components/admin/admin-shell.tsx
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -168,10 +169,20 @@ function SidebarContent({
 
   return (
     <div className="flex h-full w-full flex-col bg-ink text-pale">
-      <div className="border-b border-pale/12 px-5 pt-[22px] pb-[18px]">
-        <div className="font-serif text-[21px]">Harmattan Books</div>
-        <div className="mt-1 text-[9px] font-bold tracking-[0.26em] text-gold uppercase">
-          Staff console
+      <div className="flex items-center gap-2.5 border-b border-pale/12 px-5 pt-[22px] pb-[18px]">
+        {/* Light variant: the navy wordmark would disappear on ink. */}
+        <Image
+          src="/logo-mark-light.png"
+          alt=""
+          width={40}
+          height={40}
+          className="h-10 w-10 shrink-0 object-contain"
+        />
+        <div className="min-w-0">
+          <div className="truncate font-serif text-[21px]">Harmattan Books</div>
+          <div className="mt-1 text-[9px] font-bold tracking-[0.26em] text-gold uppercase">
+            Staff console
+          </div>
         </div>
       </div>
       <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto p-3">
@@ -287,6 +298,13 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           >
             <PanelLeft className="h-4.5 w-4.5" />
           </button>
+          <Image
+            src="/logo-mark-light.png"
+            alt=""
+            width={32}
+            height={32}
+            className="h-8 w-8 shrink-0 object-contain"
+          />
           <div className="min-w-0">
             <div className="truncate font-serif text-[17px] leading-tight">Harmattan Books</div>
             <div className="truncate text-[8.5px] font-bold tracking-[0.26em] text-gold uppercase">

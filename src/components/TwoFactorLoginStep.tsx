@@ -2,6 +2,7 @@
 'use client';
 
 import { useActionState, useEffect, useState, useTransition } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { userLoggedIn } from '@/redux/auth-slice';
@@ -56,9 +57,13 @@ export default function TwoFactorLoginStep({ maskedEmail }: TwoFactorLoginStepPr
         <div className="glass-from-sm">
           {/* Header */}
           <div className="border-b border-mist px-1 pt-6 pb-6 sm:px-8 sm:pt-8 text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center bg-ink text-lg text-cream">
-              ✓
-            </div>
+            <Image
+              src="/logo-mark.png"
+              alt=""
+              width={56}
+              height={56}
+              className="mx-auto mb-3 h-14 w-14 object-contain"
+            />
             <h1 className="font-serif text-[28px] leading-tight font-normal text-ink">
               Two-factor authentication
             </h1>

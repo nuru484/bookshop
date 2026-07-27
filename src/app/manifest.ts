@@ -12,5 +12,9 @@ export default function manifest(): MetadataRoute.Manifest {
     background_color: siteConfig.backgroundColor,
     theme_color: siteConfig.themeColor,
     categories: ['shopping', 'books'],
+    icons: [
+      { src: '/logo-mark.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+      { src: '/logo-mark.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+    ],
   };
 }

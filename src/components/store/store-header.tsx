@@ -1,6 +1,7 @@
 // src/components/store/store-header.tsx
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -162,13 +163,26 @@ export function StoreHeader() {
     <>
       <header className="sticky top-0 z-40 border-b border-mist bg-[rgba(243,246,240,0.42)] shadow-[inset_0_-1px_0_rgba(255,255,255,0.5)] backdrop-blur-[30px] backdrop-saturate-[180%]">
         <div className="mx-auto flex max-w-[1180px] items-center gap-3 px-5 py-3">
-          <Link href="/" className="mr-auto min-w-0 leading-none no-underline hover:no-underline">
-            <div className="font-serif text-[22px] tracking-[-0.01em] whitespace-nowrap text-ink sm:text-[26px]">
-              Harmattan Books
-            </div>
-            <div className="mt-[3px] truncate text-[9.5px] font-bold tracking-[0.28em] text-sage uppercase">
-              Independent booksellers · Tamale
-            </div>
+          <Link
+            href="/"
+            className="mr-auto flex min-w-0 items-center gap-2.5 leading-none no-underline hover:no-underline"
+          >
+            <Image
+              src="/logo-mark.png"
+              alt=""
+              width={44}
+              height={44}
+              priority
+              className="h-9 w-9 shrink-0 object-contain sm:h-11 sm:w-11"
+            />
+            <span className="min-w-0">
+              <span className="block font-serif text-[22px] tracking-[-0.01em] whitespace-nowrap text-ink sm:text-[26px]">
+                Harmattan Books
+              </span>
+              <span className="mt-[3px] block truncate text-[9.5px] font-bold tracking-[0.28em] text-sage uppercase">
+                Independent booksellers · Tamale
+              </span>
+            </span>
           </Link>
 
           {/* Desktop nav */}
@@ -229,11 +243,20 @@ export function StoreHeader() {
               className="animate-drawer-in absolute inset-y-0 right-0 flex w-[min(320px,85vw)] flex-col bg-[rgba(243,246,240,0.94)] shadow-[-20px_0_50px_rgba(18,30,23,0.3)] backdrop-blur-[36px] backdrop-saturate-[170%]"
             >
               <div className="flex items-center justify-between border-b border-mist px-5 py-4">
-                <div className="leading-none">
-                  <div className="font-serif text-[20px] text-ink">Harmattan Books</div>
-                  <div className="mt-1 text-[8.5px] font-bold tracking-[0.28em] text-sage uppercase">
-                    Independent booksellers · Tamale
-                  </div>
+                <div className="flex min-w-0 items-center gap-2.5 leading-none">
+                  <Image
+                    src="/logo-mark.png"
+                    alt=""
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 shrink-0 object-contain"
+                  />
+                  <span className="min-w-0">
+                    <span className="block font-serif text-[20px] text-ink">Harmattan Books</span>
+                    <span className="mt-1 block truncate text-[8.5px] font-bold tracking-[0.28em] text-sage uppercase">
+                      Independent booksellers · Tamale
+                    </span>
+                  </span>
                 </div>
                 <button
                   type="button"

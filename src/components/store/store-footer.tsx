@@ -1,4 +1,5 @@
 // src/components/store/store-footer.tsx
+import Image from 'next/image';
 import Link from 'next/link';
 
 const FOOT_LINK =
@@ -9,7 +10,17 @@ export function StoreFooter() {
     <footer className="mt-auto bg-ink text-pale">
       <div className="mx-auto flex max-w-[1180px] flex-wrap gap-10 px-5 pt-12 pb-[30px]">
         <div className="flex-[2_1_260px]">
-          <div className="mb-2.5 font-serif text-2xl">Harmattan Books</div>
+          <div className="mb-2.5 flex items-center gap-3">
+            {/* Light variant: the navy wordmark would disappear on ink. */}
+            <Image
+              src="/logo-mark-light.png"
+              alt=""
+              width={48}
+              height={48}
+              className="h-12 w-12 shrink-0 object-contain"
+            />
+            <span className="font-serif text-2xl">Harmattan Books</span>
+          </div>
           <p className="m-0 max-w-[38ch] text-[13.5px] leading-[1.7] text-pale/65">
             An independent bookshop in Tamale, Northern Region. Classics kept in print, opinions
             kept sharp, tea kept warm.

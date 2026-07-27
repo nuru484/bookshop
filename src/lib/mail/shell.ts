@@ -6,6 +6,7 @@ import { ENV } from '@/config/env';
 export const emailShell = (inner: string): string => `
   <div style="max-width: 560px; margin: 0 auto; border: 1px solid #DCE3D8; background: #F7F9F5;">
     <div style="background: #1C2A21; padding: 26px 28px; text-align: center;">
+      <img src="${ENV.BASE_URL}/logo-mark-light.png" width="64" height="64" alt="" style="display: block; margin: 0 auto 10px; width: 64px; height: 64px;">
       <div style="font: 400 26px Georgia, 'Times New Roman', serif; color: #F3F6F0;">Harmattan Books</div>
       <div style="font: 700 10px Arial, sans-serif; letter-spacing: .26em; color: #C2A65A; text-transform: uppercase; margin-top: 7px;">Independent booksellers · Tamale</div>
     </div>

@@ -4,6 +4,7 @@
 import { useActionState, useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
+import Image from 'next/image';
 import Link from 'next/link';
 import { userLoggedIn } from '@/redux/auth-slice';
 import { signin, type SigninState } from '../lib/auth';
@@ -50,6 +51,14 @@ export default function LoginForm() {
         <div className="glass-from-sm">
           {/* Header */}
           <div className="border-b border-mist px-1 pt-6 pb-6 sm:px-8 sm:pt-8 text-center">
+            <Image
+              src="/logo-mark.png"
+              alt=""
+              width={64}
+              height={64}
+              priority
+              className="mx-auto mb-3 h-16 w-16 object-contain"
+            />
             <div className="font-serif text-[26px] leading-none text-ink">Harmattan Books</div>
             <div className="mt-1.5 text-[9.5px] font-bold tracking-[0.28em] text-gold-deep uppercase">
               Staff console
