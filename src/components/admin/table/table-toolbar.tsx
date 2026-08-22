@@ -2,6 +2,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { X } from 'lucide-react';
 import { useDebounce } from '@/hooks/use-debounce';
 
 interface TableToolbarProps {
@@ -32,7 +33,7 @@ interface TableToolbarProps {
 
 /**
  * Search + filters toolbar. The search input is long (grows to fill its row)
- * with an inline ✕ clear. On lg+ everything sits inline on the search row;
+ * with an inline clear button. On lg+ everything sits inline on the search row;
  * below lg the select/date filters collapse behind a "Filters" toggle (with
  * an active-count badge) while chip rows stay visible and scrollable. Owns
  * the search input locally and debounces upward (400ms); a lastEmitted ref
@@ -106,7 +107,7 @@ export function TableToolbar({
               aria-label="Clear search"
               className="absolute top-1/2 right-2 flex h-6 w-6 -translate-y-1/2 cursor-pointer items-center justify-center border-none bg-transparent p-0 text-[13px] font-bold text-sage hover:text-ink"
             >
-              ✕
+              <X className="h-3.5 w-3.5" aria-hidden="true" />
             </button>
           )}
         </div>

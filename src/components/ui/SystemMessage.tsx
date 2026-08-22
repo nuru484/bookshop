@@ -13,7 +13,7 @@ export interface SystemMessageAction {
 export interface SystemMessageProps {
   /** Big display number, e.g. "404" - mutually exclusive with glyph. */
   code?: string;
-  /** Circled glyph, e.g. "!" or "✕". */
+  /** Mark shown in the dark square above the title: a character or an icon element. */
   glyph?: ReactNode;
   title: string;
   description?: string;

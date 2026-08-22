@@ -2,6 +2,7 @@
 'use client';
 
 import { useId, useMemo, useState } from 'react';
+import { X } from 'lucide-react';
 import {
   useGetBooksQuery,
   useRestockBookMutation,
@@ -220,7 +221,7 @@ function RestockModal({
               aria-label="Choose another title"
               className="cursor-pointer border-none bg-transparent p-1 text-[13px] font-bold text-sage hover:text-ink"
             >
-              ✕
+              <X className="h-3.5 w-3.5" aria-hidden="true" />
             </button>
           </div>
           <FormField

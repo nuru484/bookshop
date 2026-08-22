@@ -4,6 +4,7 @@
 import { useActionState, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Check } from 'lucide-react';
 import { forgotPassword, type ForgotPasswordState } from '../lib/auth';
 import { notify } from '@/lib/notify';
 
@@ -47,7 +48,7 @@ export default function ForgotPasswordForm() {
         {state.success ? (
           <div className="space-y-5 px-1 py-8 sm:px-8 text-center">
             <div className="mx-auto flex h-12 w-12 items-center justify-center bg-pine text-lg text-cream">
-              ✓
+              <Check className="h-5 w-5" aria-hidden="true" />
             </div>
             <p className="text-sm text-moss">{state.message}</p>
             <Link

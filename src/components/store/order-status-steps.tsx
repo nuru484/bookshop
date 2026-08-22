@@ -2,6 +2,7 @@
 'use client';
 
 import { Fragment } from 'react';
+import { Check } from 'lucide-react';
 import type { OrderStatus } from '@/data/catalog';
 
 const STEPS = ['Pending', 'Paid', 'Shipped', 'Delivered'] as const;
@@ -44,7 +45,7 @@ export function OrderStatusSteps({ status }: { status: OrderStatus }) {
                   color: done ? '#F1F6EF' : '#6A7A66',
                 }}
               >
-                {done ? '✓' : i + 1}
+                {done ? <Check className="h-3 w-3" aria-hidden="true" /> : i + 1}
               </div>
               <div
                 className="text-[11.5px] font-semibold"

@@ -3,6 +3,7 @@
 
 import Link from 'next/link';
 import { Fragment } from 'react';
+import { Check } from 'lucide-react';
 import { useGetOrderQuery, useUpdateOrderStatusMutation } from '@/redux/catalog-api';
 import { useConfirm } from '@/hooks/use-confirm';
 import { notify } from '@/lib/notify';
@@ -179,7 +180,7 @@ export default function OrderDetailClient({ orderId }: { orderId: string }) {
                       color: done ? '#F1F6EF' : '#6A7A66',
                     }}
                   >
-                    {done ? '✓' : i + 1}
+                    {done ? <Check className="h-3 w-3" aria-hidden="true" /> : i + 1}
                   </div>
                   <div className="text-[11.5px] font-semibold" style={{ color: done ? '#1C2A21' : '#6A7A66' }}>
                     {step}

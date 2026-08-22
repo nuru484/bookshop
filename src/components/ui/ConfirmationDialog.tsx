@@ -2,6 +2,7 @@
 'use client';
 
 import { useId, type ReactNode } from 'react';
+import { Check, X } from 'lucide-react';
 import { Modal } from './Modal';
 import { cn } from '@/lib/utils';
 
@@ -49,7 +50,7 @@ export function ConfirmationDialog({
         )}
         aria-hidden="true"
       >
-        {isDestructive ? '✕' : '✓'}
+        {isDestructive ? <X className="h-5 w-5" /> : <Check className="h-5 w-5" />}
       </div>
       <h2 id={titleId} className="mb-2 font-serif text-2xl font-normal text-ink">
         {title}

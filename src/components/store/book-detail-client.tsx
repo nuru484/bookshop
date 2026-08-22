@@ -2,10 +2,12 @@
 'use client';
 
 import Link from 'next/link';
-import { fmtCedis, stars, yearLabel } from '@/lib/format';
+import { Heart } from 'lucide-react';
+import { fmtCedis, yearLabel } from '@/lib/format';
 import { useAppSelector } from '@/redux/store';
 import { useHydrated } from '@/hooks/use-hydrated';
 import { BookCover } from '@/components/ui/BookCover';
+import { StarRating } from '@/components/ui/StarRating';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { cn } from '@/lib/utils';
 import { useShopActions } from './use-shop-actions';
@@ -67,7 +69,7 @@ export function BookDetailClient({ slug }: { slug: string }) {
             by {book.author}
           </Link>
           <div className="mb-[18px] text-[15px] text-gold">
-            {stars(book.rating)}{' '}
+            <StarRating rating={book.rating} size={14} />{' '}
             <span className="text-sage">
               {book.rating} · {book.pages} pages · paperback
             </span>
@@ -93,7 +95,12 @@ export function BookDetailClient({ slug }: { slug: string }) {
               onClick={() => toggleWishlist(book.id)}
               className="btn-outline-ink px-[22px] py-[15px] text-sm"
             >
-              {wished ? '♥' : '♡'} {wished ? 'Saved' : 'Save for later'}
+              <Heart
+                className="mr-1.5 inline h-4 w-4 align-[-3px]"
+                fill={wished ? 'currentColor' : 'none'}
+                aria-hidden="true"
+              />
+              {wished ? 'Saved' : 'Save for later'}
             </button>
           </div>
           <div className="glass max-w-[52ch] px-[18px] py-3.5 text-[13.5px] leading-[1.6] text-moss">

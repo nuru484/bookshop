@@ -4,6 +4,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Check } from 'lucide-react';
 import { useAppSelector } from '@/redux/store';
 import { useHydrated } from '@/hooks/use-hydrated';
 import { useGetDashboardStatsQuery } from '@/redux/catalog-api';
@@ -173,7 +174,14 @@ function NeedsAttention({ data }: { data: IDashboardStats['needsAttention'] }) {
             color: total === 0 ? '#3E5A41' : '#8A6414',
           }}
         >
-          {total === 0 ? '✓ All caught up' : `${total} item${total === 1 ? '' : 's'} to review`}
+          {total === 0 ? (
+            <>
+              <Check className="mr-1 inline h-3 w-3 align-[-2px]" aria-hidden="true" />
+              All caught up
+            </>
+          ) : (
+            `${total} item${total === 1 ? '' : 's'} to review`
+          )}
         </span>
       </div>
       <div className="mb-4 text-xs font-medium text-sage">

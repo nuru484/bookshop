@@ -2,6 +2,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Heart } from 'lucide-react';
 import { fmtCedis } from '@/lib/format';
 import { useAppSelector } from '@/redux/store';
 import { useHydrated } from '@/hooks/use-hydrated';
@@ -45,7 +46,8 @@ export function WishlistClient() {
         <div className="glass-dashed px-5 py-[50px] text-center">
           <div className="mb-2 font-serif text-2xl text-ink">Nothing dog-eared yet</div>
           <p className="m-0 mb-[18px] text-sm text-sage">
-            Tap the ♡ on any book to keep it here for later.
+            Tap the <Heart className="inline h-3.5 w-3.5 align-[-2px]" role="img" aria-label="heart" />{' '}
+            on any book to keep it here for later.
           </p>
           <Link
             href="/shop"
@@ -75,7 +77,7 @@ export function WishlistClient() {
                   }}
                   className="absolute top-2 right-2 flex h-8 w-8 cursor-pointer items-center justify-center border-none bg-cream/92 text-base text-pine"
                 >
-                  ♥
+                  <Heart className="h-4 w-4" fill="currentColor" aria-hidden="true" />
                 </button>
               </div>
               <div className="font-serif text-base leading-tight">{book.title}</div>

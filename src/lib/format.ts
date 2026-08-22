@@ -5,12 +5,6 @@ import type { Book, Order } from '@/data/catalog';
 export const fmtCedis = (n: number): string =>
   `GH₵${Number(n).toLocaleString('en-GH', { maximumFractionDigits: 2 })}`;
 
-/** "★★★★☆" for a 0-5 rating. */
-export const stars = (rating: number): string => {
-  const r = Math.round(rating);
-  return '★'.repeat(r) + '☆'.repeat(5 - r);
-};
-
 /** "26 Jul 2026" from an ISO date or datetime string. */
 export const fmtDate = (iso: string): string => {
   const d = new Date(iso.length === 10 ? `${iso}T00:00:00` : iso);

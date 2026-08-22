@@ -4,6 +4,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { X } from 'lucide-react';
 import { FREE_DELIVERY_OVER } from '@/data/catalog';
 import { fmtCedis } from '@/lib/format';
 import { notify } from '@/lib/notify';
@@ -85,7 +86,7 @@ export function CartDrawer() {
             aria-label="Close basket"
             className="cursor-pointer border-none bg-transparent p-1 text-[22px] text-sage hover:text-ink"
           >
-            ✕
+            <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
 

@@ -4,6 +4,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useRef, useState, useTransition } from 'react';
+import { Check } from 'lucide-react';
 import { notify } from '@/lib/notify';
 import { fmtCedis, fmtDate, fmtTime, initials } from '@/lib/format';
 import {
@@ -234,7 +235,7 @@ export function AccountClient() {
         <section className="animate-fade-up mx-auto w-full max-w-[640px] pt-10 pb-16">
           <div className="glass-from-sm px-1 py-8 sm:px-7">
             <div className="mb-4 flex h-11 w-11 items-center justify-center bg-ink text-base text-cream">
-              ✓
+              <Check className="h-4 w-4" aria-hidden="true" />
             </div>
             <h1 className="m-0 mb-1.5 font-serif text-[28px] font-normal">Check your email</h1>
             <p className="m-0 mb-[22px] text-sm text-sage">

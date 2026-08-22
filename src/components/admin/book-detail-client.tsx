@@ -6,11 +6,12 @@ import { useRouter } from 'next/navigation';
 import { useGetBookQuery, useRestockBookMutation, useUpdateBookMutation } from '@/redux/catalog-api';
 import { useConfirm } from '@/hooks/use-confirm';
 import { notify } from '@/lib/notify';
-import { fmtCedis, stars, yearLabel } from '@/lib/format';
+import { fmtCedis, yearLabel } from '@/lib/format';
 import { extractApiError } from '@/utils/extract-api-error';
 import { cn } from '@/lib/utils';
 import { StatusPill, StockLevelPill } from '@/components/ui/StatusPill';
 import { BookCover } from '@/components/ui/BookCover';
+import { StarRating } from '@/components/ui/StarRating';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { ErrorState } from '@/components/ui/ErrorState';
 import { Skeleton, StatsSkeleton } from '@/components/ui/Skeleton';
@@ -138,7 +139,7 @@ export default function BookDetailClient({ bookId }: { bookId: number }) {
             <StockLevelPill stock={book.stock} />
             {bookStatusPill(book.status)}
             <span className="text-[13.5px] text-gold">
-              {stars(book.rating)} <span className="text-sage">{book.rating}</span>
+              <StarRating rating={book.rating} size={13} /> <span className="text-sage">{book.rating}</span>
             </span>
           </div>
           <p className="m-0 mb-3.5 max-w-[56ch] text-[14.5px] leading-[1.65] text-moss">{book.blurb}</p>

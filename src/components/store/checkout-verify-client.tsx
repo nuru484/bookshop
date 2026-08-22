@@ -4,6 +4,7 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useRef } from 'react';
+import { Check, X } from 'lucide-react';
 import { fmtCedis } from '@/lib/format';
 import { useVerifyPaymentQuery } from '@/redux/catalog-api';
 import { recordMyOrder } from '@/redux/shop-slice';
@@ -126,7 +127,7 @@ export function CheckoutVerifyClient() {
     return (
       <section className={shellCls}>
         <div className="mx-auto mb-[22px] flex h-16 w-16 items-center justify-center bg-pine text-[28px] text-cream">
-          ✓
+          <Check className="h-8 w-8" aria-hidden="true" />
         </div>
         <h1 className="m-0 mb-2.5 font-serif text-[40px] font-normal">Thank you, {firstName}.</h1>
         <p className="m-0 mb-[22px] text-[15.5px] leading-[1.7] text-moss [text-wrap:pretty]">
@@ -146,7 +147,7 @@ export function CheckoutVerifyClient() {
   return (
     <section className={shellCls}>
       <div className="mx-auto mb-[22px] flex h-16 w-16 items-center justify-center bg-rust-pale text-[28px] font-bold text-rust">
-        ✕
+        <X className="h-8 w-8" aria-hidden="true" />
       </div>
       <h1 className="m-0 mb-2.5 font-serif text-[40px] font-normal">Payment not completed</h1>
       <p className="m-0 mb-[22px] text-[15.5px] leading-[1.7] text-moss [text-wrap:pretty]">

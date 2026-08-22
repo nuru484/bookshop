@@ -3,6 +3,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useId, useMemo, useState } from 'react';
+import { X } from 'lucide-react';
 import { useCreateAdminOrderMutation, useGetBooksQuery } from '@/redux/catalog-api';
 import { useDebounce } from '@/hooks/use-debounce';
 import { notify } from '@/lib/notify';
@@ -279,7 +280,7 @@ export function NewOrderModal({ open, onClose }: { open: boolean; onClose: () =>
                     aria-label={`Remove ${line.title}`}
                     className="shrink-0 cursor-pointer px-1.5 text-[13px] font-bold text-sage hover:text-rust"
                   >
-                    ✕
+                    <X className="h-3.5 w-3.5" aria-hidden="true" />
                   </button>
                 </div>
               ))}

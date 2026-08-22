@@ -3,6 +3,7 @@
 
 import { useEffect, useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
+import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useHydrated } from '@/hooks/use-hydrated';
 
@@ -13,7 +14,7 @@ export interface ModalProps {
   className?: string;
   /** id of the title element for aria-labelledby. */
   labelledBy?: string;
-  /** Show the top-right ✕ close button (default true). */
+  /** Show the top-right close button (default true). */
   showClose?: boolean;
 }
 
@@ -80,7 +81,7 @@ export function Modal({ open, onClose, children, className, labelledBy, showClos
             aria-label="Close dialog"
             className="absolute top-3 right-3 flex h-8 w-8 cursor-pointer items-center justify-center border-none bg-transparent text-[15px] font-bold text-sage hover:text-ink"
           >
-            ✕
+            <X className="h-4 w-4" aria-hidden="true" />
           </button>
         )}
         {children}

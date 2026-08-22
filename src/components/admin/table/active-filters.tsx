@@ -2,6 +2,7 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import { X } from 'lucide-react';
 
 export function FilterChip({ children, onRemove }: { children: ReactNode; onRemove: () => void }) {
   return (
@@ -13,7 +14,7 @@ export function FilterChip({ children, onRemove }: { children: ReactNode; onRemo
         aria-label="Remove filter"
         className="cursor-pointer border-none bg-transparent p-0 text-[11px] font-bold text-pine hover:text-rust"
       >
-        ✕
+        <X className="h-3 w-3" aria-hidden="true" />
       </button>
     </span>
   );
