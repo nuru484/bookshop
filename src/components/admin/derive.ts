@@ -1,5 +1,5 @@
 // src/components/admin/derive.ts
-// Derived data shared by the admin pages - mirrors the design's renderVals().
+// Derived data shared by the admin pages.
 import type { Book, Order } from '@/data/catalog';
 import { orderTotal } from '@/lib/format';
 

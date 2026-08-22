@@ -131,8 +131,8 @@ const normalizeError = (err: unknown): Error => {
 };
 
 /**
- * App Router equivalent of handleError.
- * Use in the catch block of every API route handler.
+ * Turns any thrown value into the JSON error response for an App Router
+ * route handler. Use in the catch block of every API route handler.
  */
 export const handleApiError = (err: unknown): NextResponse => {
   const isProduction = process.env.NODE_ENV === 'production';

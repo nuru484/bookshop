@@ -4,7 +4,7 @@
 import toast from 'react-hot-toast';
 
 /**
- * The design's toast: a single dark bar, bottom-center, that fades up.
+ * The shop's toast: a single dark bar, bottom-center, that fades up.
  * One visual for every tone - the copy carries the meaning.
  */
 function show(message: string, duration = 2400): string {

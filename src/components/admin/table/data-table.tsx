@@ -1,8 +1,7 @@
 // src/components/admin/table/data-table.tsx
 // Generic client-side data-table kit: useClientTable owns filtering/sorting/
 // pagination over a local array; DataTable renders the Harmattan shell with a
-// real table on md+ and dense row cards below md. Architecture mirrors the
-// website-frontend kit; the data layer is client-side until the APIs land.
+// real table on md+ and dense row cards below md.
 'use client';
 
 import type { ReactNode } from 'react';

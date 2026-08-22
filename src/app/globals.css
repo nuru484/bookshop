@@ -147,7 +147,7 @@
 }
 
 @layer components {
-  /* Frosted-glass card - the design's signature surface */
+  /* Frosted-glass card - the signature surface */
   .glass {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.26));
     backdrop-filter: blur(28px) saturate(170%);

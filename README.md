@@ -1,10 +1,9 @@
 # Harmattan Books (bookshop)
 
 Full-stack Next.js 16 bookshop: a public storefront and a staff console
-(admin) behind real session auth, implemented from the "Harmattan Books"
-Claude Design (Storefront.dc.html + Admin.dc.html). The UI currently runs on
-seeded in-memory data (redux); the REST APIs come later and will slot into
-the existing RTK Query base slice.
+(admin) behind real session auth, under the "Harmattan Books" brand. The UI
+reads live data through the RTK Query slices, falling back to the static
+seed catalogue when no database is reachable.
 
 ## Stack
 
@@ -15,8 +14,8 @@ the existing RTK Query base slice.
   `src/lib/auth.ts` (login, email-OTP 2FA, forgot/reset password), Upstash
   rate limiting, Gmail SMTP mail layer, env-gated first-admin seed
 - `src/proxy.ts` guards `/admin/*` → redirects to `/login`
-- Customer auth (mock, per the design): client-side sign-in on `/account`,
-  persisted in localStorage until the customer API exists
+- Customer auth (mock): client-side sign-in on `/account`, persisted in
+  localStorage until the customer API exists
 - State: Redux Toolkit - `catalog` slice (books/orders/promos/staff, shared
   by storefront + admin so admin edits show everywhere), `shop` slice
   (basket/wishlist/recent searches/customer, persisted), `auth` slice
@@ -30,7 +29,7 @@ everywhere. Palette + glass surfaces + button recipes live in
 `.btn-primary/dark/outline-*`, `.eyebrow`, color tokens `ink pine sage
 gold rust …`).
 
-## UX / SEO infrastructure (khadys-kitchen conventions)
+## UX / SEO infrastructure
 
 - `src/lib/site.ts` + `src/lib/seo.ts` (`pageMetadata`) - clamped titles,
   canonical, noindex for transactional pages; `sitemap.ts`, `robots.ts`,
@@ -38,8 +37,8 @@ gold rust …`).
 - `loading.tsx` skeletons on content routes; `error.tsx`,
   `global-error.tsx`, `not-found.tsx` via `SystemMessage`
 - `EmptyState`, `ErrorState`, `Modal` + `ConfirmationDialog` +
-  `useConfirm()` for every destructive action, `notify()` toast (the
-  design's dark bottom-center bar), `Skeleton` kit, `StatusPill`/
+  `useConfirm()` for every destructive action, `notify()` toast (a dark
+  bottom-center bar), `Skeleton` kit, `StatusPill`/
   `StockLevelPill`, `BookCover` with shelf-colored fallback
 
 ## Routes

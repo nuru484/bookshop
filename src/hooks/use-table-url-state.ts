@@ -46,10 +46,10 @@ const serialize = (
 /**
  * Table state (search / filters / page) seeded from and mirrored to the URL
  * query string, with a sessionStorage fallback so leaving a list and coming
- * back lands on the page you were reading.
+ * back lands on the page that was last read.
  *
  * Precedence: an explicit URL always wins; the saved state is only adopted
- * when you arrive with none of this table's params.
+ * when the request carries none of this table's params.
  */
 export function useTableUrlState({
   filterKeys,

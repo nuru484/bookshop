@@ -31,7 +31,7 @@ const NEUTRAL: ITrend = { percentage: 0, direction: 'neutral' };
 
 /**
  * Deep defaults so a field the API has not deployed yet renders as zero
- * instead of blanking the page (the dms withDashboardStatsDefaults lesson).
+ * instead of blanking the page.
  */
 const withDefaults = (stats?: IDashboardStats): IDashboardStats => ({
   kpis: {

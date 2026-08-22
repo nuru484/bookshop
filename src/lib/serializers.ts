@@ -1,6 +1,6 @@
 // src/lib/serializers.ts
-// Maps DB rows to the exact shapes the UI already speaks (src/data/catalog
-// types), so swapping redux seed data for API data needs no UI type churn.
+// Maps DB rows to the exact shapes the UI speaks (the src/data/catalog
+// types), so API data and seed data share one set of UI types.
 import type { Book as DbBook, Order as DbOrder, OrderItem as DbOrderItem } from '@/lib/prisma';
 import type { Book, Order } from '@/data/catalog';
 

@@ -21,8 +21,8 @@ const labelCls = 'text-[13px] font-bold';
 
 /**
  * Password + two-factor controls for the signed-in user. Shared by the
- * profile page and the staff detail page, so viewing your own record through
- * the staff table is not a downgraded experience.
+ * profile page and the staff detail page, so a user reaching their own
+ * record through the staff table is not given a downgraded experience.
  */
 export function SecuritySettings({ me }: { me: IUser }) {
   const { confirm, dialog } = useConfirm();

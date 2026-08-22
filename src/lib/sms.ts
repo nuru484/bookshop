@@ -1,6 +1,6 @@
 // src/lib/sms.ts
-// Frog (Wigal) SMS - mirrors the dms-backend integration: API-KEY/USERNAME
-// headers, GSM-7 sanitization, "ACCEPTD" success sentinel.
+// Frog (Wigal) SMS: API-KEY/USERNAME headers, GSM-7 sanitization,
+// "ACCEPTD" success sentinel.
 import 'server-only';
 import { ENV } from '@/config/env';
 import logger from '@/utils/logger';

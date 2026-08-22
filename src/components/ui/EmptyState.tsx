@@ -27,7 +27,7 @@ const ACTION_CLASS: Record<NonNullable<EmptyStateAction['variant']>, string> = {
 };
 
 /**
- * The design's dashed-glass empty state: serif title, sage copy,
+ * Dashed-glass empty state: serif title, sage copy,
  * optional single call to action.
  */
 export function EmptyState({ eyebrow, title, description, action, className }: EmptyStateProps) {

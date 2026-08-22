@@ -1,7 +1,6 @@
 // src/data/catalog.ts
-// Seed data mirrored from the Claude Design project's data.js. This feeds the
-// redux catalog slice so the whole UI works end-to-end before the REST APIs
-// exist; later the slice gets replaced by RTK Query endpoints.
+// Static seed catalogue. It feeds the redux catalog slice so the whole UI
+// renders end-to-end whenever live API data is unavailable.
 
 export type Genre = 'Romance' | 'Gothic' | 'Literary' | 'Adventure' | 'Epic';
 

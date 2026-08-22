@@ -75,8 +75,8 @@ export function CheckoutClient() {
     .filter((x) => x.book);
   const totals = cartTotals(cart, books, promo);
 
-  // Codes are real DB records now - validate against the API for an honest
-  // estimate; the server re-applies the promo itself at payment time.
+  // Promo codes are DB records, so the checkout validates against the API for
+  // an honest estimate; the server re-applies the promo itself at payment time.
   const onApplyPromo = async () => {
     const code = promoIn.trim().toUpperCase();
     if (!code) return;
@@ -141,8 +141,8 @@ export function CheckoutClient() {
         );
       }
 
-      // Full redirect to Paystack's hosted checkout (dms pattern - the
-      // secret stays server-side, no public key in the client).
+      // Full redirect to Paystack's hosted checkout: the secret stays
+      // server-side, no public key in the client.
       window.location.href = res.data.authorizationUrl;
     } catch (err) {
       // Stock may have moved since the page loaded - surface the server's

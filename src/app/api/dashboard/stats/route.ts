@@ -15,7 +15,7 @@ export interface ITrend {
   direction: TrendDirection;
 }
 
-/** Percentage delta plus direction, mirroring the dms trend contract. */
+/** Percentage delta plus direction. */
 const calculateTrend = (current: number, previous: number): ITrend => {
   if (previous === 0) {
     return { percentage: current > 0 ? 100 : 0, direction: current > 0 ? 'upward' : 'neutral' };

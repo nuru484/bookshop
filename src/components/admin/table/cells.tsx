@@ -1,7 +1,7 @@
 // src/components/admin/table/cells.tsx
 // Shared cell components + selection helpers for the data-table kit, so
-// entity clients stop hand-rolling the same fragments (dms-frontend DRY
-// checklist: select column, avatar/money/title cells).
+// entity clients stop hand-rolling the same fragments: select column,
+// avatar/money/title cells.
 'use client';
 
 import { useState, type ReactNode } from 'react';

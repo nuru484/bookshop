@@ -7,6 +7,6 @@ export const isNotFound = (error: unknown): boolean => extractApiError(error).st
 /** Sort direction param value for the APIs. */
 export const dirParam = (dir: 1 | -1): 'asc' | 'desc' => (dir === 1 ? 'asc' : 'desc');
 
-/** Container classes for the khadys background-refetch dim. */
+/** Container classes that dim a list while it refetches in the background. */
 export const refetchDim = (isFetching: boolean, isLoading: boolean): string =>
   isFetching && !isLoading ? 'opacity-60 transition-opacity' : 'transition-opacity';

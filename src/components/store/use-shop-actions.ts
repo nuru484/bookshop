@@ -11,7 +11,7 @@ import { useWishlist } from './use-wishlist';
 /**
  * The storefront's two universal actions - add to basket (stock-aware,
  * opens the drawer) and toggle wishlist (DB-backed for signed-in
- * customers, localStorage for guests) - with the design's toast copy.
+ * customers, localStorage for guests) - each with its own toast copy.
  */
 export function useShopActions() {
   const dispatch = useAppDispatch();

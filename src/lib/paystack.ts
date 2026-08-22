@@ -1,6 +1,6 @@
 // src/lib/paystack.ts
-// Paystack client mirroring the dms-backend integration: timeout-wrapped
-// fetch, text-then-parse error handling, timing-safe webhook signatures.
+// Paystack client: timeout-wrapped fetch, text-then-parse error handling,
+// timing-safe webhook signatures.
 import 'server-only';
 import crypto from 'crypto';
 import { ENV } from '@/config/env';

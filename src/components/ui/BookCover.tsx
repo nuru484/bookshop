@@ -22,7 +22,7 @@ const FALLBACK_TITLE: Record<NonNullable<BookCoverProps['fallback']>, string> = 
 };
 
 /**
- * 2:3 book cover with the design's colored-fallback behaviour: the shelf
+ * 2:3 book cover with a colored fallback: the shelf
  * color + title/author show underneath, and the Open Library cover image
  * simply hides itself when it fails to load.
  */

@@ -1,4 +1,4 @@
-// middleware/prismaErrorHandler.ts
+// src/middlewares/prisma-error-handler.ts
 import { Prisma } from '../lib/prisma';
 import { CustomError, ErrorSeverity } from './error-handler';
 

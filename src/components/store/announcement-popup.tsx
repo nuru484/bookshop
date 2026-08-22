@@ -8,8 +8,8 @@ import { useHydrated } from '@/hooks/use-hydrated';
 const DISMISS_KEY = 'hb-announcement-dismissed';
 
 /**
- * The free-delivery notice as a dismissible popup card (replacing the old
- * static top bar). Dismissal persists in localStorage so it stays closed.
+ * The free-delivery notice as a dismissible popup card. Dismissal persists
+ * in localStorage so it stays closed.
  */
 export function AnnouncementPopup() {
   const hydrated = useHydrated();

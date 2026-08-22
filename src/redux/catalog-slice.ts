@@ -1,8 +1,7 @@
 // src/redux/catalog-slice.ts
 // In-memory catalogue seeded from the static data. Both the storefront and
 // the admin console read from here, so admin mutations (restock, delete,
-// order status changes) are reflected everywhere. When the REST APIs land,
-// this slice is replaced by RTK Query endpoints injected into api-slice.
+// order status changes) are reflected everywhere.
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   BOOKS,

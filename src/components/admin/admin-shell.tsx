@@ -221,7 +221,7 @@ function SidebarContent({
 }
 
 const SIDEBAR_WIDTH = 224;
-const DRAWER_WIDTH = 288; // 18rem, per the dms mobile sheet width
+const DRAWER_WIDTH = 288; // 18rem, the mobile sheet width
 
 export default function AdminShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

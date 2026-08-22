@@ -65,7 +65,7 @@ jobs:
         run: npx prisma migrate deploy
 
       - name: Check for em dashes
-        # Project writing rule: the em dash is never used in this codebase.
+        # The em dash is never used anywhere in this codebase.
         run: |
           if grep -rn '—' src prisma 2>/dev/null; then
             echo "::error::Em dash found. Use ' - ' instead."

@@ -1,6 +1,6 @@
 // src/lib/cloudinary.ts
-// Cloudinary avatar storage - upload/replace/destroy, mirroring the hardened
-// mhp pattern: validate before upload, always destroy the old asset.
+// Cloudinary avatar storage - upload/replace/destroy. Validate before
+// uploading, and always destroy the old asset.
 import 'server-only';
 import { v2 as cloudinary } from 'cloudinary';
 import { ENV } from '@/config/env';

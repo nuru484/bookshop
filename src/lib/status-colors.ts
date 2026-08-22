@@ -1,5 +1,5 @@
 // src/lib/status-colors.ts
-// Single source of truth for status pill colors, mirroring the design's PILL map.
+// Single source of truth for status pill colors.
 import type { OrderStatus } from '@/data/catalog';
 import { LOW_STOCK_THRESHOLD } from '@/data/catalog';
 
@@ -23,7 +23,7 @@ export interface StockPill extends PillColors {
   label: string;
 }
 
-/** "Out of stock" / "4 left" / "24 in stock" pill, as in the admin design. */
+/** "Out of stock" / "4 left" / "24 in stock" pill for the staff console. */
 export const stockPill = (stock: number, threshold = LOW_STOCK_THRESHOLD): StockPill => {
   if (stock === 0) return { label: 'Out of stock', bg: '#F0DEDA', fg: '#93381A' };
   if (stock <= threshold) return { label: `${stock} left`, bg: '#F3E7CE', fg: '#8A6414' };

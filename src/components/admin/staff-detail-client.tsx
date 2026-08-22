@@ -174,8 +174,8 @@ export default function StaffDetailClient({ userId }: { userId: string }) {
         )}
       </div>
 
-      {/* Security: your own record gets the real controls, even when reached
-          through the staff table. Everyone else's stays read-only. */}
+      {/* Security: a user's own record gets the real controls, even when
+          reached through the staff table. Every other record stays read-only. */}
       {isSelf ? (
         <SecuritySettings me={member} />
       ) : (
