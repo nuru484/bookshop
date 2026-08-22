@@ -318,7 +318,7 @@ export function CheckoutClient() {
             disabled={starting}
             className="mt-[18px] w-full cursor-pointer border-none bg-linear-135 from-[#09A5DB] to-[#0B6FB8] px-5 py-4 text-[15px] font-bold text-white shadow-[0_6px_16px_rgba(9,110,184,0.3)] transition-[filter] hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
           >
-            {starting ? 'Starting payment…' : `🔒 Pay ${fmtCedis(totals.total)} with Paystack`}
+            {starting ? 'Starting payment…' : `Pay ${fmtCedis(totals.total)} with Paystack`}
           </button>
           <div className="mt-2.5 text-center text-[11.5px] text-sage">
             Secured by Paystack · Cards, MoMo &amp; bank transfer
