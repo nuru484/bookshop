@@ -1,9 +1,11 @@
-# Harmattan Books (bookshop)
+# bookshop
 
 Full-stack Next.js 16 bookshop: a public storefront and a staff console
-(admin) behind real session auth, under the "Harmattan Books" brand. The UI
-reads live data through the RTK Query slices, falling back to the static
-seed catalogue when no database is reachable.
+(admin) behind real session auth. The UI reads live data through the RTK
+Query slices, falling back to the static seed catalogue when no database is
+reachable. The shop name and every other brand detail are environment
+variables, so one build can serve a differently branded shop without a code
+change.
 
 ## Stack
 
@@ -14,12 +16,28 @@ seed catalogue when no database is reachable.
   `src/lib/auth.ts` (login, email-OTP 2FA, forgot/reset password), Upstash
   rate limiting, Gmail SMTP mail layer, env-gated first-admin seed
 - `src/proxy.ts` guards `/admin/*` → redirects to `/login`
-- Customer auth (mock): client-side sign-in on `/account`, persisted in
-  localStorage until the customer API exists
+- Customer auth: session cookie issued by the same sign-in action, with
+  sign-up at `POST /api/auth/signup`
+- Payments: Paystack checkout, verified callback, signed webhook and refunds;
+  settlement is idempotent and commits stock in the same transaction
 - State: Redux Toolkit - `catalog` slice (books/orders/promos/staff, shared
   by storefront + admin so admin edits show everywhere), `shop` slice
   (basket/wishlist/recent searches/customer, persisted), `auth` slice
-  (admin user), RTK Query base slice ready for endpoints
+  (admin user), RTK Query slices over the REST API
+
+## Branding
+
+`src/lib/site.ts` is the single source of brand truth and reads every value
+from a `NEXT_PUBLIC_SITE_*` variable, falling back to the defaults in that
+file. Setting `NEXT_PUBLIC_SITE_NAME` alone rebrands the whole app, because
+the domain, contact address, social handles and SEO keywords are derived from
+it; the rest of the variables (`_DOMAIN`, `_EMAIL`, `_HEADLINE`, `_TAGLINE`,
+`_ADDRESS`, `_CITY`, `_REGION`, `_COUNTRY`, `_OPENING_HOURS`, the socials and
+the theme colours) override individual pieces. `.env.example` lists them all.
+The names are spelled out in full in `site.ts` rather than looked up
+dynamically, because Next only inlines `NEXT_PUBLIC_` values it can see
+statically. The logo files in `public/` are the one brand asset that is not
+env-driven.
 
 ## Design system
 
