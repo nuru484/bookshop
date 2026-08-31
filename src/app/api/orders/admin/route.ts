@@ -12,6 +12,7 @@ import { BOOKS_TAG } from '@/lib/catalog-data';
 import { dispatchOrderNotification } from '@/lib/sms';
 import { sendOrderConfirmedEmail, type IOrderEmailPayload } from '@/lib/mail/order-emails';
 import { ENV } from '@/config/env';
+import { siteConfig } from '@/lib/site';
 
 /**
  * POST /api/orders/admin
@@ -99,7 +100,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         { name: order.name, email: order.email, phone: order.phone },
         {
           idTag: `order-confirmed-${order.id}`,
-          sms: `Harmattan Books: order ${order.id} confirmed (GHS ${order.total.toFixed(2)}). Track it at ${ENV.BASE_URL}/track-order`,
+          sms: `${siteConfig.name}: order ${order.id} confirmed (GHS ${order.total.toFixed(2)}). Track it at ${ENV.BASE_URL}/track-order`,
           sendEmail: () => sendOrderConfirmedEmail(payload),
         },
       );

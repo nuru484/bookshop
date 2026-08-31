@@ -17,6 +17,7 @@ import { refundPaystackTransaction } from '@/lib/paystack';
 import { dispatchOrderNotification } from '@/lib/sms';
 import { sendOrderStatusEmail, type IOrderEmailPayload } from '@/lib/mail/order-emails';
 import { ENV } from '@/config/env';
+import { siteConfig } from '@/lib/site';
 import logger from '@/utils/logger';
 import type { OrderStatus } from '@/data/catalog';
 
@@ -177,12 +178,12 @@ export async function PATCH(
     };
     const smsCopy =
       updated.status === 'Shipped'
-        ? `Harmattan Books: order ${order.id} has shipped. Track it at ${ENV.BASE_URL}/track-order`
+        ? `${siteConfig.name}: order ${order.id} has shipped. Track it at ${ENV.BASE_URL}/track-order`
         : updated.status === 'Delivered'
-          ? `Harmattan Books: order ${order.id} was delivered. Happy reading!`
+          ? `${siteConfig.name}: order ${order.id} was delivered. Happy reading!`
           : updated.status === 'Cancelled'
-            ? `Harmattan Books: order ${order.id} was cancelled${updated.refundedAt ? ' and refunded' : ''}.`
-            : `Harmattan Books: order ${order.id} is now ${updated.status}.`;
+            ? `${siteConfig.name}: order ${order.id} was cancelled${updated.refundedAt ? ' and refunded' : ''}.`
+            : `${siteConfig.name}: order ${order.id} is now ${updated.status}.`;
     void dispatchOrderNotification(
       { name: order.name, email: order.email, phone: order.phone },
       {

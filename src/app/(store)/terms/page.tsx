@@ -1,11 +1,12 @@
 // src/app/(store)/terms/page.tsx
 import { pageMetadata } from '@/lib/seo';
+import { siteConfig, postalAddress } from '@/lib/site';
 import { LegalPage, LegalSection } from '@/components/store/legal-page';
 
 export const metadata = pageMetadata({
   title: 'Terms of service',
   description:
-    'The terms that apply when you browse, order and pay at Harmattan Books - ordering, delivery, refunds and accounts.',
+    `The terms that apply when you browse, order and pay at ${siteConfig.name} - ordering, delivery, refunds and accounts.`,
   path: '/terms',
 });
 
@@ -89,8 +90,7 @@ export default function TermsPage() {
           tells you when we last did.
         </p>
         <p>
-          Harmattan Books, Aboabo Market Road, Tamale, Northern Region, Ghana ·
-          hello@harmattanbooks.com
+          {siteConfig.name}, {postalAddress} · {siteConfig.email}
         </p>
       </LegalSection>
     </LegalPage>

@@ -1,4 +1,6 @@
 // src/config/env.ts
+import { siteConfig } from '@/lib/site';
+
 function required(name: string): string {
   const v = process.env[name];
   if (!v) throw new Error(`Missing required env variable: ${name}`);
@@ -29,7 +31,7 @@ export const ENV = {
 
   // Public site origin - used to build absolute links in emails (e.g. the
   // password-reset link). Falls back to localhost for local development.
-  BASE_URL: optional('NEXT_PUBLIC_BASE_URL') ?? 'http://localhost:3000',
+  BASE_URL: optional('NEXT_PUBLIC_BASE_URL') ?? 'http://localhost:3001',
 
   UPSTASH_REDIS_REST_URL: required('UPSTASH_REDIS_REST_URL'),
   UPSTASH_REDIS_REST_TOKEN: required('UPSTASH_REDIS_REST_TOKEN'),
@@ -52,12 +54,12 @@ export const ENV = {
   // Frog SMS (Wigal) - customer notifications. Optional like the mail layer.
   FROG_API_KEY: optional('FROG_API_KEY'),
   FROG_USERNAME: optional('FROG_USERNAME'),
-  FROG_SENDER_ID: optional('FROG_SENDER_ID') ?? 'Harmattan',
+  FROG_SENDER_ID: optional('FROG_SENDER_ID') ?? siteConfig.shortName,
 
   // Gmail SMTP - used to email two-factor authentication codes. Optional so
   // the app still boots without them; the mail layer fails loudly at send time
   // if a 2FA flow runs while they're unset.
   GMAIL_USER: optional('GMAIL_USER'),
   GMAIL_PASSWORD: optional('GMAIL_PASSWORD'),
-  EMAIL_FROM_NAME: optional('EMAIL_FROM_NAME') ?? 'Harmattan Books',
+  EMAIL_FROM_NAME: optional('EMAIL_FROM_NAME') ?? siteConfig.name,
 } as const;

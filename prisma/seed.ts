@@ -9,6 +9,7 @@ import prisma from '@/lib/prisma';
 import bcrypt from 'bcrypt';
 import { ENV } from '@/config/env';
 import { BOOKS } from '@/data/catalog';
+import { sampleEmail } from '@/lib/site';
 import type { Genre, OrderStatus } from '@/lib/prisma';
 
 /** Shared password for every seeded account (staff and customers). */
@@ -40,10 +41,10 @@ interface SeedCustomer {
 }
 
 const STAFF: SeedStaff[] = [
-  { fullname: 'Selasi Amoah', email: 'selasi@harmattanbooks.com', phone: '024 555 0100', role: 'ADMIN', twoFactorEnabled: false },
-  { fullname: 'Kwesi Appiah', email: 'kwesi@harmattanbooks.com', phone: '020 555 0111', role: 'ADMIN' },
-  { fullname: 'Adjoa Mills', email: 'adjoa@harmattanbooks.com', phone: '054 555 0122', role: 'EDITOR' },
-  { fullname: 'Yaw Mensimah', email: 'yaw@harmattanbooks.com', phone: '027 555 0133', role: 'EDITOR' },
+  { fullname: 'Selasi Amoah', email: sampleEmail('selasi'), phone: '024 555 0100', role: 'ADMIN', twoFactorEnabled: false },
+  { fullname: 'Kwesi Appiah', email: sampleEmail('kwesi'), phone: '020 555 0111', role: 'ADMIN' },
+  { fullname: 'Adjoa Mills', email: sampleEmail('adjoa'), phone: '054 555 0122', role: 'EDITOR' },
+  { fullname: 'Yaw Mensimah', email: sampleEmail('yaw'), phone: '027 555 0133', role: 'EDITOR' },
 ];
 
 const CUSTOMERS: SeedCustomer[] = [
@@ -118,7 +119,7 @@ const ORDER_PLANS: OrderPlan[] = [
 ];
 
 const PROMOS = [
-  { code: 'HARMATTAN15', percentOff: 15, description: 'Rainy-season sale - 15% off the Gothic shelf', genre: 'Gothic' as Genre, active: true },
+  { code: 'SEASON15', percentOff: 15, description: 'Rainy-season sale - 15% off the Gothic shelf', genre: 'Gothic' as Genre, active: true },
   { code: 'FIRSTCHAPTER', percentOff: 10, description: "10% off a customer's first order", genre: null, active: true },
   { code: 'TAMALE20', percentOff: 20, description: 'Northern Region reading week', genre: null, active: true },
   { code: 'EPICJOURNEY', percentOff: 12, description: '12% off the Epic shelf', genre: 'Epic' as Genre, active: false },

@@ -1,11 +1,12 @@
 // src/app/(store)/privacy/page.tsx
 import { pageMetadata } from '@/lib/seo';
+import { siteConfig, postalAddress } from '@/lib/site';
 import { LegalPage, LegalSection } from '@/components/store/legal-page';
 
 export const metadata = pageMetadata({
   title: 'Privacy policy',
   description:
-    'How Harmattan Books collects, uses and protects your information when you browse, order and create an account.',
+    `How ${siteConfig.name} collects, uses and protects your information when you browse, order and create an account.`,
   path: '/privacy',
 });
 
@@ -75,15 +76,15 @@ export default function PrivacyPage() {
         <p>
           You can see and correct your details any time from your account page, including removing
           your profile photo. To request a copy of your data or the deletion of your account, write
-          to <strong>hello@harmattanbooks.com</strong> from the email on the account and we will
+          to <strong>{siteConfig.email}</strong> from the email on the account and we will
           sort it out within 14 days.
         </p>
       </LegalSection>
 
       <LegalSection heading="Questions">
         <p>
-          Harmattan Books, Aboabo Market Road, Tamale, Northern Region, Ghana ·
-          hello@harmattanbooks.com. If anything here is unclear, ask - a human answers.
+          {siteConfig.name}, {postalAddress} · {siteConfig.email}. If anything here is unclear,
+          ask - a human answers.
         </p>
       </LegalSection>
     </LegalPage>

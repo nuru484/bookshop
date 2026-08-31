@@ -1,7 +1,8 @@
 import { brandOgImage, OG_SIZE, OG_CONTENT_TYPE } from '@/lib/og-template';
+import { siteConfig } from '@/lib/site';
 import { getBooksCached } from '@/lib/catalog-data';
 
-export const alt = 'Harmattan Books - independent booksellers in Tamale';
+export const alt = `${siteConfig.name} - ${siteConfig.headline.toLowerCase()}`;
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
@@ -29,8 +30,8 @@ export default async function AuthorOpengraphImage({
     eyebrow: 'Author collection',
     title: author,
     subtitle: count
-      ? `${count} title${count === 1 ? '' : 's'} on our shelves, delivered anywhere in Ghana.`
-      : 'On our shelves, delivered anywhere in Ghana.',
-    cta: 'See the collection at harmattanbooks.com →',
+      ? `${count} title${count === 1 ? '' : 's'} on our shelves, delivered anywhere in ${siteConfig.country}.`
+      : `On our shelves, delivered anywhere in ${siteConfig.country}.`,
+    cta: `See the collection at ${siteConfig.domain} →`,
   });
 }

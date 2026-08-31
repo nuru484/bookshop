@@ -14,6 +14,7 @@ import { useHydrated } from '@/hooks/use-hydrated';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { initials } from '@/lib/format';
 import { notify } from '@/lib/notify';
+import { siteConfig } from '@/lib/site';
 import { LOW_STOCK_THRESHOLD } from '@/data/catalog';
 
 const NAV: { href: string; label: string; key: string }[] = [
@@ -179,7 +180,7 @@ function SidebarContent({
           className="h-10 w-10 shrink-0 object-contain"
         />
         <div className="min-w-0">
-          <div className="truncate font-serif text-[21px]">Harmattan Books</div>
+          <div className="truncate font-serif text-[21px]">{siteConfig.name}</div>
           <div className="mt-1 text-[9px] font-bold tracking-[0.26em] text-gold uppercase">
             Staff console
           </div>
@@ -306,7 +307,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             className="h-8 w-8 shrink-0 object-contain"
           />
           <div className="min-w-0">
-            <div className="truncate font-serif text-[17px] leading-tight">Harmattan Books</div>
+            <div className="truncate font-serif text-[17px] leading-tight">{siteConfig.name}</div>
             <div className="truncate text-[8.5px] font-bold tracking-[0.26em] text-gold uppercase">
               Staff console
             </div>

@@ -4,6 +4,7 @@
 import { Fragment } from 'react';
 import { Check } from 'lucide-react';
 import type { OrderStatus } from '@/data/catalog';
+import { siteConfig } from '@/lib/site';
 
 const STEPS = ['Pending', 'Paid', 'Shipped', 'Delivered'] as const;
 
@@ -15,8 +16,8 @@ export function OrderStatusSteps({ status }: { status: OrderStatus }) {
   if (status === 'Cancelled') {
     return (
       <p className="m-0 text-[13.5px] text-rust">
-        This order was cancelled and refunded. If that&apos;s a surprise, write to us at
-        hello@harmattanbooks.com.
+        This order was cancelled and refunded. If that&apos;s a surprise, write to us at{' '}
+        {siteConfig.email}.
       </p>
     );
   }

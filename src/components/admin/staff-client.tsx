@@ -12,6 +12,7 @@ import {
 import { useConfirm } from '@/hooks/use-confirm';
 import { useTableUrlState } from '@/hooks/use-table-url-state';
 import { notify } from '@/lib/notify';
+import { siteConfig } from '@/lib/site';
 import { extractApiError } from '@/utils/extract-api-error';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { Modal } from '@/components/ui/Modal';
@@ -171,7 +172,7 @@ function AddStaffModal({ open, onClose }: { open: boolean; onClose: () => void }
                 setEmail(e.target.value);
                 clearField('email');
               }}
-              placeholder="teammate@harmattanbooks.com"
+              placeholder={`teammate@${siteConfig.domain}`}
             />
           )}
         </FormField>

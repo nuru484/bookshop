@@ -2,10 +2,11 @@
 import { Suspense } from 'react';
 import ForgotPasswordForm from '@/components/ForgotPasswordForm';
 import { pageMetadata } from '@/lib/seo';
+import { siteConfig } from '@/lib/site';
 
 export const metadata = pageMetadata({
   title: 'Forgot password',
-  description: 'Request a password reset link for the Harmattan Books staff console.',
+  description: `Request a password reset link for the ${siteConfig.name} staff console.`,
   path: '/forgot-password',
   index: false,
 });

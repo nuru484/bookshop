@@ -29,7 +29,7 @@ const ACTION_CLASS: Record<NonNullable<SystemMessageAction['variant']>, string> 
 
 /**
  * Shared shell for full-page system states: 404, error boundary,
- * access denied. Centered, serif-led, Harmattan-voiced.
+ * access denied. Centered and serif-led, in the shop's voice.
  */
 export function SystemMessage({ code, glyph, title, description, actions, className }: SystemMessageProps) {
   return (

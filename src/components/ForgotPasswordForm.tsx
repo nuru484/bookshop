@@ -3,6 +3,7 @@
 
 import { useActionState, useEffect, useState } from 'react';
 import Image from 'next/image';
+import { siteConfig } from '@/lib/site';
 import Link from 'next/link';
 import { Check } from 'lucide-react';
 import { forgotPassword, type ForgotPasswordState } from '../lib/auth';
@@ -33,7 +34,7 @@ export default function ForgotPasswordForm() {
             priority
             className="mx-auto mb-3 h-16 w-16 object-contain"
           />
-          <div className="font-serif text-[26px] leading-none text-ink">Harmattan Books</div>
+          <div className="font-serif text-[26px] leading-none text-ink">{siteConfig.name}</div>
           <div className="mt-1.5 text-[9.5px] font-bold tracking-[0.28em] text-gold-deep uppercase">
             Staff console
           </div>
@@ -70,7 +71,7 @@ export default function ForgotPasswordForm() {
                   id="email"
                   type="email"
                   name="email"
-                  placeholder="you@harmattanbooks.com"
+                  placeholder={`you@${siteConfig.domain}`}
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}

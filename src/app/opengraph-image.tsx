@@ -1,6 +1,7 @@
 import { brandOgImage, OG_SIZE, OG_CONTENT_TYPE } from '@/lib/og-template';
+import { siteConfig } from '@/lib/site';
 
-export const alt = 'Harmattan Books - independent booksellers in Tamale';
+export const alt = `${siteConfig.name} - ${siteConfig.headline.toLowerCase()}`;
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

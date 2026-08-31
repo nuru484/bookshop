@@ -1,7 +1,8 @@
 import { brandOgImage, OG_SIZE, OG_CONTENT_TYPE } from '@/lib/og-template';
+import { siteConfig } from '@/lib/site';
 import { getBookBySlugCached } from '@/lib/catalog-data';
 
-export const alt = 'Harmattan Books - independent booksellers in Tamale';
+export const alt = `${siteConfig.name} - ${siteConfig.headline.toLowerCase()}`;
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
@@ -31,6 +32,6 @@ export default async function BookOpengraphImage({
     subtitle: book
       ? `GHS ${book.price} · ${book.pages} pages · delivered anywhere in Ghana.`
       : 'Hand-picked classics, kept in print and in stock.',
-    cta: book ? 'Order it at harmattanbooks.com →' : undefined,
+    cta: book ? `Order it at ${siteConfig.domain} →` : undefined,
   });
 }

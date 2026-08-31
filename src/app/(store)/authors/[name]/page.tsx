@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { BOOKS, type Book } from '@/data/catalog';
 import { getBooksCached } from '@/lib/catalog-data';
 import { pageMetadata } from '@/lib/seo';
+import { siteConfig } from '@/lib/site';
 import { AuthorClient } from '@/components/store/author-client';
 
 interface Params {
@@ -33,8 +34,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: `${author} - Author collection`,
     description:
       count > 0
-        ? `${count} ${count === 1 ? 'title' : 'titles'} by ${author}, in stock at Harmattan Books and delivered anywhere in Ghana.`
-        : `Titles by ${author} at Harmattan Books.`,
+        ? `${count} ${count === 1 ? 'title' : 'titles'} by ${author}, in stock at ${siteConfig.name} and delivered anywhere in ${siteConfig.country}.`
+        : `Titles by ${author} at ${siteConfig.name}.`,
     path: `/authors/${encodeURIComponent(author)}`,
     keywords: [author],
   });

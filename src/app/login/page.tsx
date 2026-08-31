@@ -2,10 +2,11 @@
 import { Suspense } from 'react';
 import LoginForm from '@/components/LoginForm';
 import { pageMetadata } from '@/lib/seo';
+import { siteConfig } from '@/lib/site';
 
 export const metadata = pageMetadata({
   title: 'Staff sign in',
-  description: 'Sign in to the Harmattan Books staff console.',
+  description: `Sign in to the ${siteConfig.name} staff console.`,
   path: '/login',
   index: false,
 });

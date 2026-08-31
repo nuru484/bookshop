@@ -86,7 +86,7 @@ export function HomeClient() {
           </div>
           <div className="font-serif text-2xl">
             15% off the Gothic shelf with code{' '}
-            <strong className="font-sans text-lg tracking-[0.06em]">HARMATTAN15</strong>
+            <strong className="font-sans text-lg tracking-[0.06em]">SEASON15</strong>
           </div>
         </div>
         <Link

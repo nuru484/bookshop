@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useRef, useState, useTransition } from 'react';
 import { Check } from 'lucide-react';
 import { notify } from '@/lib/notify';
+import { siteConfig } from '@/lib/site';
 import { fmtCedis, fmtDate, fmtTime, initials } from '@/lib/format';
 import {
   signin,
@@ -317,7 +318,7 @@ export function AccountClient() {
             .unwrap()
             .catch(() => {});
         }
-        notify('Welcome to Harmattan Books.');
+        notify(`Welcome to ${siteConfig.name}.`);
       } catch (err) {
         const { message } = extractApiError(err);
         // A taken email is a field problem; anything else is form level.

@@ -15,6 +15,7 @@ import {
   type IOrderEmailPayload,
 } from './mail/order-emails';
 import { ENV } from '@/config/env';
+import { siteConfig } from '@/lib/site';
 
 export interface ISettlementResult {
   orderId: string | null;
@@ -101,7 +102,7 @@ export const settlePaystackOrder = async (reference: string): Promise<ISettlemen
       { name: order.name, email: order.email, phone: order.phone },
       {
         idTag: `order-confirmed-${order.id}`,
-        sms: `Harmattan Books: order ${order.id} confirmed (GHS ${order.total.toFixed(2)}). Track it at ${ENV.BASE_URL}/track-order`,
+        sms: `${siteConfig.name}: order ${order.id} confirmed (GHS ${order.total.toFixed(2)}). Track it at ${ENV.BASE_URL}/track-order`,
         sendEmail: () => sendOrderConfirmedEmail(payload),
       },
     );

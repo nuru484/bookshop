@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 import { ImageResponse } from 'next/og';
+import { siteConfig } from '@/lib/site';
 
 /**
  * Shared brand template for every Open Graph card (home, shop, book, author,
@@ -22,7 +23,7 @@ const PINE = '#2E6B4F';
 const GOLD = '#C2A65A';
 const CREAM = '#F1F6EF';
 
-const DEFAULT_CTA = 'Browse the shelves at harmattanbooks.com →';
+const DEFAULT_CTA = `Browse the shelves at ${siteConfig.domain} →`;
 
 export async function brandOgImage({
   eyebrow,
@@ -129,8 +130,10 @@ export async function brandOgImage({
             paddingTop: 22,
           }}
         >
-          <span>harmattanbooks.com</span>
-          <span>Harmattan Books · Tamale, Ghana</span>
+          <span>{siteConfig.domain}</span>
+          <span>
+            {siteConfig.name} · {siteConfig.city}, {siteConfig.country}
+          </span>
         </div>
       </div>
     ),

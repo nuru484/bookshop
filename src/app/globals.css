@@ -3,7 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ── Harmattan Books palette ─────────────────────────────────────────── */
+/* ── Shop palette ────────────────────────────────────────────────────── */
 @theme {
   /* Brand */
   --color-ink: #1c2a21; /* darkest green-black: bars, footer, sidebar */
@@ -63,7 +63,7 @@
   }
 }
 
-/* shadcn-style semantic tokens, remapped to the Harmattan palette */
+/* shadcn-style semantic tokens, remapped to the shop palette */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

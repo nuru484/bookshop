@@ -2,6 +2,7 @@
 'use client';
 
 import Image from 'next/image';
+import { siteConfig } from '@/lib/site';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -177,10 +178,10 @@ export function StoreHeader() {
             />
             <span className="min-w-0">
               <span className="block font-serif text-[22px] tracking-[-0.01em] whitespace-nowrap text-ink sm:text-[26px]">
-                Harmattan Books
+                {siteConfig.name}
               </span>
               <span className="mt-[3px] block truncate text-[9.5px] font-bold tracking-[0.28em] text-sage uppercase">
-                Independent booksellers · Tamale
+                {siteConfig.tagline}
               </span>
             </span>
           </Link>
@@ -252,9 +253,9 @@ export function StoreHeader() {
                     className="h-9 w-9 shrink-0 object-contain"
                   />
                   <span className="min-w-0">
-                    <span className="block font-serif text-[20px] text-ink">Harmattan Books</span>
+                    <span className="block font-serif text-[20px] text-ink">{siteConfig.name}</span>
                     <span className="mt-1 block truncate text-[8.5px] font-bold tracking-[0.28em] text-sage uppercase">
-                      Independent booksellers · Tamale
+                      {siteConfig.tagline}
                     </span>
                   </span>
                 </div>

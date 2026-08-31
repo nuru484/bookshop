@@ -27,7 +27,7 @@ function clamp(text: string, max: number): string {
 
 /**
  * Builds the full Metadata object for a page. Titles are clamped including
- * the " · Harmattan Books" suffix; descriptions are clamped on a word
+ * the " · <site name>" suffix; descriptions are clamped on a word
  * boundary. When no image is passed, OG/Twitter images are omitted so the
  * file-convention opengraph-image (if present) merges in.
  */

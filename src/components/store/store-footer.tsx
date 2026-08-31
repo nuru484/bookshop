@@ -1,6 +1,7 @@
 // src/components/store/store-footer.tsx
 import Image from 'next/image';
 import Link from 'next/link';
+import { siteConfig } from '@/lib/site';
 
 const FOOT_LINK =
   'bg-transparent border-none text-pale cursor-pointer text-left p-0 text-sm font-medium no-underline hover:text-pine hover:no-underline';
@@ -19,11 +20,10 @@ export function StoreFooter() {
               height={48}
               className="h-12 w-12 shrink-0 object-contain"
             />
-            <span className="font-serif text-2xl">Harmattan Books</span>
+            <span className="font-serif text-2xl">{siteConfig.name}</span>
           </div>
           <p className="m-0 max-w-[38ch] text-[13.5px] leading-[1.7] text-pale/65">
-            An independent bookshop in Tamale, Northern Region. Classics kept in print, opinions
-            kept sharp, tea kept warm.
+            {siteConfig.blurb}
           </p>
         </div>
         <div className="flex-[1_1_140px]">
@@ -46,21 +46,23 @@ export function StoreFooter() {
         <div className="flex-[1_1_230px]">
           <div className="mb-3 text-[11px] font-bold tracking-[0.22em] text-pale/50 uppercase">Visit us</div>
           <div className="text-[13.5px] leading-[1.8] whitespace-nowrap text-pale/75">
-            Aboabo Market Road
+            {siteConfig.address}
             <br />
-            Tamale, Northern Region
+            {siteConfig.city}, {siteConfig.region}
             <br />
-            Ghana
+            {siteConfig.country}
             <br />
-            Tue-Sun · 9am-7pm
+            {siteConfig.openingHours}
             <br />
-            hello@harmattanbooks.com
+            {siteConfig.email}
           </div>
         </div>
       </div>
       <div className="border-t border-pale/12">
         <div className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-between gap-x-5 gap-y-2 px-5 py-4 text-xs text-pale/45">
-          <span className="whitespace-nowrap">© 2026 Harmattan Books</span>
+          <span className="whitespace-nowrap">
+            © {siteConfig.copyrightYear} {siteConfig.name}
+          </span>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <Link
               href="/privacy"

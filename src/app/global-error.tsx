@@ -2,6 +2,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { siteConfig } from '@/lib/site';
 
 // Replaces the root layout when it crashes, so it renders its own
 // <html>/<body> with inline styles only (globals.css is unavailable).
@@ -21,7 +22,7 @@ export default function GlobalError({
   return (
     <html lang="en">
       <head>
-        <title>Something went wrong · Harmattan Books</title>
+        <title>{`Something went wrong · ${siteConfig.name}`}</title>
       </head>
       <body
         style={{

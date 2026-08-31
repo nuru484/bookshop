@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { BOOKS } from '@/data/catalog';
 import { getBookBySlugCached, getBooksCached } from '@/lib/catalog-data';
 import { pageMetadata } from '@/lib/seo';
+import { siteConfig } from '@/lib/site';
 import { BookDetailClient } from '@/components/store/book-detail-client';
 
 interface Params {
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: book ? book.title : fallbackTitle,
     description: book
       ? `${book.blurb} By ${book.author}. ${book.pages} pages, paperback.`
-      : 'A title from the Harmattan Books shelves, delivered anywhere in Ghana.',
+      : `A title from the ${siteConfig.name} shelves, delivered anywhere in ${siteConfig.country}.`,
     path: `/books/${slug}`,
     keywords: book ? [book.title, book.author, book.genre] : undefined,
   });

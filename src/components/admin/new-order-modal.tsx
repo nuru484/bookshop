@@ -307,7 +307,7 @@ export function NewOrderModal({ open, onClose }: { open: boolean; onClose: () =>
                   setPromoCode(e.target.value.toUpperCase());
                   clearField('promoCode');
                 }}
-                placeholder="HARMATTAN15"
+                placeholder="SEASON15"
               />
             )}
           </FormField>

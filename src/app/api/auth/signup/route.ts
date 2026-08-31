@@ -13,6 +13,7 @@ import {
 import { signupSchema } from '@/validations/user-validation';
 import { BCRYPT_SALT_ROUNDS } from '@/config/constants';
 import type { IUser } from '@/types/user.types';
+import { siteConfig } from '@/lib/site';
 
 /**
  * POST /api/auth/signup
@@ -82,7 +83,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     await createSession(user.id, user.role);
 
     return NextResponse.json(
-      { message: 'Welcome to Harmattan Books.', data: user as IUser },
+      { message: `Welcome to ${siteConfig.name}.`, data: user as IUser },
       { status: 201 },
     );
   } catch (err) {

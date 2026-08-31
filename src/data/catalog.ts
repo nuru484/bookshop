@@ -1,6 +1,7 @@
 // src/data/catalog.ts
 // Static seed catalogue. It feeds the redux catalog slice so the whole UI
 // renders end-to-end whenever live API data is unavailable.
+import { sampleEmail } from '@/lib/site';
 
 export type Genre = 'Romance' | 'Gothic' | 'Literary' | 'Adventure' | 'Epic';
 
@@ -142,16 +143,16 @@ export const FUNNEL = [
 ];
 
 export const PROMOS: Promo[] = [
-  { code: 'HARMATTAN15', off: 15, desc: 'Rainy-season sale - 15% off the Gothic shelf', active: true },
+  { code: 'SEASON15', off: 15, desc: 'Rainy-season sale - 15% off the Gothic shelf', active: true },
   { code: 'FIRSTCHAPTER', off: 10, desc: "10% off a customer's first order", active: true },
   { code: 'BOOKCLUB20', off: 20, desc: 'Book-club bulk orders of 5+ copies', active: false },
 ];
 
 export const STAFF: StaffMember[] = [
-  { name: 'Selasi Amoah', email: 'selasi@harmattanbooks.com', role: 'Owner', last: 'Active now', active: true, you: true },
-  { name: 'Kwesi Appiah', email: 'kwesi@harmattanbooks.com', role: 'Manager', last: 'Active 2h ago', active: true },
-  { name: 'Adjoa Mills', email: 'adjoa@harmattanbooks.com', role: 'Fulfilment', last: 'Yesterday', active: true },
-  { name: 'Yaw Mensimah', email: 'yaw@harmattanbooks.com', role: 'Support', last: '3 Jul 2026', active: false },
+  { name: 'Selasi Amoah', email: sampleEmail('selasi'), role: 'Owner', last: 'Active now', active: true, you: true },
+  { name: 'Kwesi Appiah', email: sampleEmail('kwesi'), role: 'Manager', last: 'Active 2h ago', active: true },
+  { name: 'Adjoa Mills', email: sampleEmail('adjoa'), role: 'Fulfilment', last: 'Yesterday', active: true },
+  { name: 'Yaw Mensimah', email: sampleEmail('yaw'), role: 'Support', last: '3 Jul 2026', active: false },
 ];
 
 export const CUSTOMER_SESSIONS: DeviceSession[] = [

@@ -6,7 +6,7 @@ import type { ClientTable } from './data-table';
 export const PAGE_SIZE_OPTIONS = [8, 16, 32];
 
 /**
- * Harmattan-styled pagination. A single compact row on mobile
+ * Console-styled pagination. A single compact row on mobile
  * ("1-8 of 42" · size select · ← →) that expands to the fuller labels
  * from sm up. Hidden entirely when the result set fits the smallest
  * page size.

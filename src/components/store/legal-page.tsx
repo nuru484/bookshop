@@ -2,6 +2,7 @@
 // Shared shell for the legal pages (privacy, terms) - serif-led prose in a
 // readable measure, consistent section styling.
 import type { ReactNode } from 'react';
+import { siteConfig } from '@/lib/site';
 
 export function LegalPage({
   title,
@@ -17,7 +18,7 @@ export function LegalPage({
   return (
     <section className="animate-fade-up mx-auto w-full max-w-[70ch] pt-12 pb-20">
       <div className="mb-2 text-[11px] font-bold tracking-[0.26em] text-pine uppercase">
-        Harmattan Books
+        {siteConfig.name}
       </div>
       <h1 className="m-0 mb-3 font-serif text-[clamp(32px,5vw,44px)] leading-[1.1] font-normal">
         {title}
